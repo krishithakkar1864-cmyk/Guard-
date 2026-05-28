@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<section class="contact_section layout_padding">
+    <div class="contact_bg_box">
+      <div class="img-box">
+        <img src="{%  static 'images/contact-bg.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+         REGISTRATION
+        </h2>
+      </div>
+      <div class="">
+        <div class="row">
+          <div class="col-md-7 mx-auto">
+            <form action="" method="post">
+              {% csrf_token %}
+              <div class="contact_form-container">
+                <div>
+                  <div>
+                    <input type="Email"  name="pemail" value="{{ emp.email }}" readonly  />
+                  </div>
+                  <div>
+                    <input type="text"  name="pname" value="{{ emp.firstname }}" pattern="[A-Za-z ]{1,50}" title="Enter Only Characters" />
+                  </div>
+                  <div>
+                    <input type="text"  name="puname" value="{{ emp.lastname }}" />
+                  </div>
+                  <div class="">
+                    <input type="password"  class="password_input" name="ppassword" value="{{ emp.password }}" />
+                  </div>
+                  <div class="btn-box ">
+                    <button type="submit">
+                      Send
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}

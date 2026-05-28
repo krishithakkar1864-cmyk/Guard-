@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <section class="contact_section layout_padding">
+    <div class="contact_bg_box">
+      <div class="img-box">
+        <img src="{% static 'images/contact-bg.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+            Data-List
+        </h2>
+          <h3>
+        {% if messages %}
+                  {% for message in messages %}
+                  {{message}}
+                  {% endfor %}
+                  {% endif %}
+              </h3>
+        <a href="{% url 'insertdata.html' %}" style="background-color:Transparent; border-bottom:2px solid yellow; -webkit-text-fill-color:white;">Add Data</a>
+      </div >
+        <form action='\searchdata' method='post' border="2px solid white">
+          {% csrf_token%}
+
+
+
+          <table id="example" class="display nowrap" style="width:100%" border="2px solid white" style="border-bottom:2px solid white;">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>action</th>
+                    <th>action</th>
+
+                </tr>
+              </thead>
+              <tbody>
+
+                {% for ls in listformdata %}
+                <tr>
+                    <td>{{ ls.eid }}</td>
+                    <td>{{ ls.ename }}</td>
+                    <td>{{ ls.eemail }}</td>
+                    <td>{{ ls.econtact }}</td>
+                    <td><a href="../editdata/{{ ls.eid }}"style="backgroud-color:Transparent; border-bottom:2px solid yellow; -webkit-text-fill-color:white;" >Edit</a></td>
+                    <td><a href="../deletedata/{{ ls.eid }}"style="backgroud-color:Transparent; border-bottom:2px solid yellow; -webkit-text-fill-color:white;">Delete</a></td>
+
+
+
+                </tr>
+
+                {% endfor %}
+              </tbody>
+            </table>
+          </form>
+
+
+       <div class="dataTables_paginate paging_simple_numbers" id="example_paginate"><a class="paginate_button previous disabled" aria-controls="example" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="-1" id="example_previous">Previous</a><span><a class="paginate_button current" aria-controls="example" role="link" aria-current="page" data-dt-idx="0" tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="example" aria-disabled="true" role="link" data-dt-idx="next" tabindex="-1" id="example_next">Next</a></div></div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
